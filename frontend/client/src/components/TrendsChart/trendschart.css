@@ -1,0 +1,54 @@
+/* trendschart.css */
+.chart-container {
+    width: 80%;  /* Reduce the width to make it medium-sized */
+    max-width: 900px;  /* Limit the maximum width */
+    margin: 0 auto;
+    padding: 30px 20px;  /* Reduce padding for a more compact look */
+    background-color: #f9f9f9;
+    border-radius: 10px;  /* Round corners for a sleek look */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .chart-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  }
+  
+  .chart-container h2 {
+    font-size: 1.6rem;  /* Medium-sized font */
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;  /* Reduced margin to keep it compact */
+  }
+  
+  .chart-container canvas {
+    border-radius: 10px;
+    background-color: #ffffff;
+    padding: 10px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .chart-container {
+      width: 90%;  /* Slightly adjust for smaller screens */
+      padding: 20px;
+    }
+  
+    .chart-container h2 {
+      font-size: 1.4rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .chart-container {
+      width: 95%;  /* Adjust for mobile devices */
+      padding: 10px;
+    }
+  
+    .chart-container h2 {
+      font-size: 1.2rem;
+    }
+  }
+  

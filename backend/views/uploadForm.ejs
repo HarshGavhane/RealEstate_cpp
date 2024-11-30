@@ -1,0 +1,36 @@
+<!-- views/uploadForm.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Image</title>
+</head>
+<body>
+  <h2>Upload Image</h2>
+  <form action="/api/upload" method="POST" enctype="multipart/form-data">
+    <div>
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" required />
+    </div>
+    <div>
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" required></textarea>
+    </div>
+    <div>
+      <label for="file">Image:</label>
+      <input type="file" id="file" name="file" required />
+    </div>
+    <button type="submit">Upload</button>
+  </form>
+
+  <% if (message) { %>
+    <div>
+      <h3><%= message %></h3>
+      <img src="<%= imageUrl %>" alt="Uploaded Image" style="width: 300px; height: auto;"/>
+      <p><strong>Title:</strong> <%= title %></p>
+      <p><strong>Description:</strong> <%= description %></p>
+    </div>
+  <% } %>
+</body>
+</html>

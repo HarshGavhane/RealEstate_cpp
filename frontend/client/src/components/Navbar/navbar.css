@@ -1,0 +1,149 @@
+/* Base styling for the navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #1e2a3a, #2c3e50); /* Gradient for a modern look */
+  padding: 1rem 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 20px; /* Adds space from the right edge of the screen */
+  width: calc(100% - 40px); /* Ensure navbar width accounts for right margin */
+  z-index: 1000;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25); /* Stronger shadow for depth */
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1); /* Subtle border with transparency */
+  transition: all 0.5s ease-in-out; /* Smooth transitions for hover effects */
+}
+
+.navbar:hover {
+  transform: translateY(-2px); /* Slight lift effect on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35); /* More pronounced shadow on hover */
+}
+
+/* Ensure the navbar elements are aligned in one row */
+.navbar__logo {
+  display: flex;
+  align-items: center; /* Vertically center the logo */
+}
+
+.navbar__logo-link {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar__logo-link:hover {
+  color: #f39c12; /* Accent color for logo hover */
+  text-shadow: 0 0 8px rgba(243, 156, 18, 0.8); /* Glow effect */
+}
+
+/* Align the navbar links in a row and space them out */
+.navbar__links {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: nowrap; /* Ensure items don't wrap */
+}
+
+.navbar__link {
+  color: #fff;
+  font-size: 1.1rem;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: all 0.4s ease-in-out;
+  border-radius: 20px; /* Smooth pill-shaped buttons */
+  display: inline-block;
+  text-transform: capitalize;
+  background: rgba(255, 255, 255, 0.1); /* Subtle transparent background */
+  backdrop-filter: blur(5px); /* Frosted glass effect */
+}
+
+.navbar__link:hover {
+  background: linear-gradient(90deg, #34495e, #2ecc71); /* Gradient hover effect */
+  color: #fff;
+  transform: scale(1.1) translateY(-3px); /* Zoom and lift effect */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+.navbar__link:active {
+  transform: scale(0.95) translateY(1px); /* Press effect when clicked */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Slightly smaller shadow */
+}
+
+/* Logout Button Styling */
+.navbar__logout {
+  background: linear-gradient(90deg, #e74c3c, #c0392b); /* Vibrant gradient */
+  font-weight: 600;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4); /* Glow effect for logout button */
+  padding: 0.3rem 0.8rem; /* Reduced padding for a smaller button */
+  font-size: 1rem; /* Smaller font size */
+}
+
+.navbar__logout:hover {
+  background: linear-gradient(90deg, #c0392b, #e74c3c); /* Reverse gradient on hover */
+  box-shadow: 0 6px 18px rgba(192, 57, 43, 0.6); /* More pronounced shadow */
+}
+
+/* Optional: If you want to adjust the scale on hover */
+.navbar__logout:hover {
+  transform: scale(1.05) translateY(-2px); /* Slightly smaller zoom effect */
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1rem 1rem;
+  }
+
+  .navbar__links {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      width: 100%;
+      margin-right: 0;
+  }
+
+  .navbar__link {
+      font-size: 1.2rem;
+      width: 100%; /* Make each link take the full width */
+      text-align: left;
+  }
+}
+
+/* Navbar Animation */
+.navbar__links .navbar__link {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-in-out forwards;
+}
+
+.navbar__links .navbar__link:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.navbar__links .navbar__link:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.navbar__links .navbar__link:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(10px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}

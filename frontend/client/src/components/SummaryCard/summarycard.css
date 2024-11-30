@@ -1,0 +1,71 @@
+/* dashboard.css */
+.dashboard-summary {
+    display: flex; /* Ensures the cards are displayed side by side */
+    justify-content: space-between; /* Distribute space evenly between cards */
+    gap: 20px; /* Add some space between the cards */
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 40px;
+}
+
+.summary-card {
+    background: #333333; /* Dark base background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease; /* Transition for smooth effects */
+    cursor: pointer;
+}
+
+/* Heading Styling */
+.summary-card h3, .summary-card p {
+    color: #ffffff; /* White text for both heading and data */
+}
+
+/* Heading */
+.summary-card h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    color: #f0f0f0; /* Light gray for heading */
+}
+
+/* Paragraph */
+.summary-card p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    font-weight: 500;
+    color: #d1d1d1; /* Slightly darker white for description text */
+}
+
+/* Hover effect with transition */
+.summary-card:hover {
+    transform: translateY(-8px); /* Lift the card slightly on hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Stronger shadow for depth */
+    background: #888888; /* Lighter gray on hover */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease; /* Smooth transition on hover */
+}
+
+/* Active effect with transition */
+.summary-card:active {
+    transform: translateY(2px); /* Adds pressure effect when clicked */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Softer shadow when clicked */
+    background: #999999; /* Very light gray on click */
+    transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.1s ease; /* Quick transition on click */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-summary {
+        flex-direction: column; /* Stack the cards vertically on small screens */
+        align-items: center; /* Center align cards */
+    }
+
+    .summary-card {
+        width: 80%; /* Make the cards wider on smaller screens */
+        margin-bottom: 20px; /* Add space between stacked cards */
+    }
+}

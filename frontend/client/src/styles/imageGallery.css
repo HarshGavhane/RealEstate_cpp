@@ -1,0 +1,129 @@
+/* Gallery container */
+.gallery-container {
+  margin: 30px auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 1200px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Hide overflow to focus on images */
+}
+
+/* Heading for each region */
+.region-heading {
+  font-size: 30px;
+  font-weight: bold;
+  text-transform: capitalize;
+  margin-bottom: 20px;
+  color: #444;
+  text-align: center;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+/* Horizontal sliding container for images */
+.images-scroll-container {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  animation: slide 30s linear infinite; /* Automatic slide with 30 seconds duration */
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Individual image items */
+.image-item {
+  flex-shrink: 0;
+  cursor: pointer;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.image-item:hover .image-thumbnail {
+  transform: scale(1.05); /* Zoom effect on hover */
+}
+
+/* Thumbnail image style */
+.image-thumbnail {
+  width: 350px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+/* Keyframe for automatic sliding */
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%); /* Move the images to the left */
+  }
+}
+
+/* Message when no images are available */
+.no-images-message {
+  font-size: 18px;
+  color: #888;
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal content */
+.modal-content {
+  position: relative;
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 90%;
+  max-height: 90%;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+/* Modal image */
+.modal-image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+/* Modal close button */
+.modal-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+
+.modal-close-button:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}

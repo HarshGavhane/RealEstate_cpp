@@ -1,0 +1,98 @@
+/* Profile container styling */
+.profile-container {
+    max-width: 800px;
+    width: 100%;
+    padding: 30px;
+    background: linear-gradient(135deg, #e0e0e0, #c4c4c4); /* Linear gradient background for the container */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Light shadow around the container */
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    overflow: hidden;
+    margin: 0 auto; /* Centers the container horizontally */
+    opacity: 0; /* Start with 0 opacity */
+    transform: translateY(50px); /* Start with the container translated downward */
+    animation: slideUp 0.6s ease-out forwards; /* Slide up animation */
+    margin-top: 100px;
+  }
+  
+  /* Animation for sliding the container upwards */
+  @keyframes slideUp {
+    to {
+      opacity: 1;
+      transform: translateY(0); /* End at the normal position */
+    }
+  }
+  
+  /* Title styling */
+  h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  
+  /* Error message styling */
+  .error-message {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Table container styling */
+  .preferences-table {
+    width: 100%;
+    margin-top: 20px;
+    overflow-x: auto;
+  }
+  
+  /* Table styling */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for the table */
+  }
+  
+  table th,
+  table td {
+    padding: 12px;
+    text-align: left;
+    font-size: 1rem;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  table th {
+    background-color: #4CAF50; /* Green background for headers */
+    color: white;
+  }
+  
+  table tr:hover {
+    background-color: #f1f1f1; /* Light hover effect on rows */
+  }
+  
+  table td {
+    color: #333;
+  }
+  
+  /* Styling for empty budget and property types */
+  table td p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #777;
+  }
+  
+  /* Media query for responsiveness */
+  @media (max-width: 768px) {
+    .profile-container {
+      padding: 15px;
+    }
+  
+    table th,
+    table td {
+      font-size: 0.9rem;
+    }
+  }
+  

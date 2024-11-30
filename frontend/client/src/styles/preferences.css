@@ -1,0 +1,160 @@
+/* Apply a Gray Shades Gradient Background */
+.preferences-container {
+  background: linear-gradient(135deg, #d3d3d3, #808080, #2f4f4f);
+  color: white;
+  font-family: 'Arial', sans-serif;
+  padding: 40px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background 0.5s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+  
+  /* Slide Up Animation */
+  transform: translateY(30px);
+  animation: slideUp 0.6s ease-out forwards;
+}
+
+/* Keyframes for the Slide-Up Animation */
+@keyframes slideUp {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Header Style */
+.preferences-container h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Form Styling */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Form Group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* Input Fields Styling */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="range"],
+select {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  background: #fff;
+  color: #333;
+  transition: border-color 0.3s ease;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus,
+input[type="range"]:focus {
+  border-color: #808080;
+  outline: none;
+}
+
+/* Property Types Multiple Select */
+select[multiple] {
+  height: 120px;
+  resize: vertical;
+}
+
+/* Button Styling */
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  width: 100%;
+  max-width: 200px;
+  margin: 10px auto;
+}
+
+/* Save Button */
+.save-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.save-btn:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+/* Edit Button */
+.edit-btn {
+  background-color: #FFA500;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #e68900;
+  transform: scale(1.05);
+}
+
+/* Delete Button */
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #e53935;
+  transform: scale(1.05);
+}
+
+/* Message Text */
+.message {
+  color: #ffeb3b;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Centered Form Elements */
+.preferences-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}

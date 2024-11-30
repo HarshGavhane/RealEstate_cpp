@@ -1,0 +1,149 @@
+/* Home.css */
+
+/* General Styles */
+.home {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+  .home-header {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+  }
+  
+  .home-header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+  
+  .home-header p {
+    font-size: 1.2rem;
+    font-weight: 300;
+  }
+  
+  /* Featured Properties Section */
+  .home-content {
+    padding: 30px 20px;
+  }
+  
+  .property-feature {
+    margin-bottom: 50px;
+  }
+  
+  .property-feature h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #2c3e50;
+  }
+  
+  .property-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .property-item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    margin-bottom: 20px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .property-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .property-item h3 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+  }
+  
+  .property-item p {
+    font-size: 1rem;
+    color: #7f8c8d;
+  }
+  
+  .property-item button {
+    background-color: #2980b9;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .property-item button:hover {
+    background-color: #3498db;
+  }
+  
+  /* Insights Section */
+  .insights {
+    margin-top: 50px;
+  }
+  
+  .insights h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #2c3e50;
+  }
+  
+  .insight-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .insight-card h3 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+  }
+  
+  .insight-card p {
+    font-size: 1rem;
+    color: #7f8c8d;
+    margin: 15px 0;
+  }
+  
+  .insight-card button {
+    background-color: #e74c3c;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .insight-card button:hover {
+    background-color: #c0392b;
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .property-list {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .property-item {
+      width: 80%;
+      margin-bottom: 20px;
+    }
+  
+    .insights {
+      text-align: center;
+    }
+  }
+  

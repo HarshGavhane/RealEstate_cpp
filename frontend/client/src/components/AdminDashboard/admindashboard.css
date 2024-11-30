@@ -1,0 +1,177 @@
+/* Admin Dashboard container */
+.admin-dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #6c757d, #adb5bd); /* Gray gradient background */
+  min-height: 100vh;
+  color: #333;
+  animation: fadeInUp 1s ease-out;
+}
+
+/* Fade In and Slide Up Effect */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Welcome message */
+h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2.5em;
+  color: white;
+  margin-top: 100px; /* Ensure the title is not hidden behind navbar */
+}
+
+/* Button container */
+.button-container {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+  opacity: 0;
+  animation: slideInFromLeft 0.5s ease-in-out forwards;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Button Styling */
+button {
+  padding: 12px 20px;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(to right, #6c757d, #495057); /* Gray gradient */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+  width: 200px;
+}
+
+button:hover {
+  background: linear-gradient(to right, #495057, #343a40); /* Darker gray gradient on hover */
+  transform: translateY(-3px); /* Slight hover effect */
+}
+
+/* Form Container Styling */
+.form-container {
+  width: 100%;
+  max-width: 600px;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  animation: slideUp 1s ease-out;
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Common input and select styling */
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  background-color: #f9f9f9;
+  transition: border 0.3s ease;
+}
+
+input:focus, select:focus {
+  border-color: #6c757d; /* Update focus border color to match the gray theme */
+  outline: none;
+}
+
+/* Submit button styling */
+button[type="submit"] {
+  padding: 12px;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(to right, #6c757d, #495057); /* Gray gradient */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background: linear-gradient(to right, #495057, #343a40); /* Darker gray gradient on hover */
+  transform: translateY(-3px); /* Slight hover effect */
+}
+
+/* Image preview container */
+.image-preview-container {
+  margin-top: 20px;
+  text-align: center;
+  animation: fadeInUp 1s ease-out;
+}
+
+.image-preview-container h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Styling for the preview image */
+.image-preview {
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: cover; /* Ensures the image doesn't stretch */
+  border-radius: 8px;
+  margin-top: 15px;
+  border: 2px solid #ddd;
+  padding: 10px;
+  background-color: #fff;
+  transition: transform 0.3s ease;
+}
+
+/* Hover effect on preview image */
+.image-preview:hover {
+  transform: scale(1.05); /* Slight zoom-in effect on hover */
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .form-container {
+    padding: 20px;
+  }
+
+  .button-container {
+    flex-direction: column;
+  }
+
+  button {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}

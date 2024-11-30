@@ -1,0 +1,137 @@
+/* Global */
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    background: #f5f5f5;
+    line-height: 1.6;
+  }
+  
+  /* Hero Section with Slider */
+  .hero-slider {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    overflow: hidden;
+    background-color: #ddd;
+  }
+  
+  .slider {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    animation: slideAnimation 12s infinite;
+  }
+  
+  .slides {
+    display: flex;
+    width: 300%;
+    height: 100%;
+  }
+  
+  .slide {
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+  }
+  
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .hero__content {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translateY(-50%);
+    z-index: 10;
+    color: #fff;
+    max-width: 40%;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+  
+  .hero__title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero__subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero__cta {
+    padding: 0.8rem 1.5rem;
+    background-color: #ff7a59;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .hero__cta:hover {
+    background-color: #e66a4e;
+  }
+  
+  /* Slider Animation */
+  @keyframes slideAnimation {
+    0% { transform: translateX(0); }
+    33% { transform: translateX(-100%); }
+    66% { transform: translateX(-200%); }
+    100% { transform: translateX(0); }
+  }
+  
+  /* Features Section with Linear Grid */
+  .features {
+    padding: 3rem 10%;
+    background-color: #f9f9f9;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #555;
+  }
+  
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  .feature-card {
+    background: linear-gradient(145deg, #e0e0e0, #ffffff);
+    border-radius: 8px;
+    box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+    text-align: center;
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 10px 10px 20px #d1d1d1, -10px -10px 20px #ffffff;
+  }
+  
+  .feature-icon {
+    font-size: 2rem;
+    color: #00509e;
+    margin-bottom: 1rem;
+  }
+  
+  .feature-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  .feature-card p {
+    font-size: 1rem;
+    color: #666;
+  }
+  

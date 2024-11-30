@@ -1,0 +1,30 @@
+/* Styling for the UploadForm */
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.upload-form label {
+  font-size: 1.2em;
+}
+
+.upload-form input[type="file"] {
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1.1em;
+  background-color: #f0f0f0;
+}
+
+.upload-form .preview-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.upload-form .preview-container img {
+  max-width: 300px;
+  height: auto;
+  border: 1px solid #ddd;
+  padding: 10px;
+  background-color: #fff;
+}
