@@ -5,9 +5,12 @@ const { saveUser, getUserByEmail, updateUserPreferences } = require('../models/u
 
 // Initialize SNS client
 const snsClient = new SNSClient({ region: 'us-east-1' }); // Update your AWS region
-const snsTopicArn = 'arn:aws:sns:us-east-1:905418443228:UserNotifications'; // Replace with your SNS Topic ARN
+const snsTopicArns = {
+  userNotifications: 'arn:aws:sns:us-east-1:905418443228:UserNotifications', // Replace with your SNS Topic ARN for user notifications
+  imageUploadNotifications: 'arn:aws:sns:us-east-1:905418443228:ImageUploadNotifications', // Replace with your SNS Topic ARN for image upload notifications
+};
 
-// Subscribe user email to SNS topic
+// Subscribe user email to SNS topics
 const subscribeUserToSNS = async (email, userId) => {
   try {
     const user = await getUserByEmail(email);
@@ -16,66 +19,83 @@ const subscribeUserToSNS = async (email, userId) => {
       throw new Error('User not found.');
     }
 
+    // Check if user is already subscribed to both topics
     if (user.isSubscribed) {
       console.log(`User ${email} is already subscribed to SNS.`);
       return;
     }
 
-    const params = {
+    // Subscribe user to userNotifications topic
+    const userParams = {
       Protocol: 'email',
       Endpoint: email,
-      TopicArn: snsTopicArn,
+      TopicArn: snsTopicArns.userNotifications,
       Attributes: {
         FilterPolicy: JSON.stringify({
           email: [email] // Filter policy to target this specific email
         })
       }
     };
+    const userSubscription = await snsClient.send(new SubscribeCommand(userParams));
+    console.log(`Subscription request sent for ${email} to userNotifications:`, userSubscription);
 
+    // Subscribe user to imageUploadNotifications topic
+    const imageUploadParams = {
+      Protocol: 'email',
+      Endpoint: email,
+      TopicArn: snsTopicArns.imageUploadNotifications,
+      Attributes: {
+        FilterPolicy: JSON.stringify({
+          email: [email] // Filter policy to target this specific email
+        })
+      }
+    };
+    const imageUploadSubscription = await snsClient.send(new SubscribeCommand(imageUploadParams));
+    console.log(`Subscription request sent for ${email} to imageUploadNotifications:`, imageUploadSubscription);
 
-    const data = await snsClient.send(new SubscribeCommand(params));
-    console.log(`Subscription request sent for ${email}:`, data);
-
-    // Update user subscription status and store the SubscriptionArn
-    await saveUser({ ...user, isSubscribed: true, snsSubscriptionArn: data.SubscriptionArn });
+    // Update user subscription status and store the SubscriptionArn for both topics
+    await saveUser({ ...user, isSubscribed: true, snsSubscriptionArnUserNotifications: userSubscription.SubscriptionArn, snsSubscriptionArnImageUploadNotifications: imageUploadSubscription.SubscriptionArn });
   } catch (error) {
     console.error('Error subscribing user to SNS:', error);
     throw new Error('Failed to subscribe user to notifications.');
   }
 };
 
-
 // Send notification to a specific user using their Subscription ARN
-const sendDirectNotification = async (userId, message) => {
+const sendDirectNotification = async (userId, message, topic) => {
   try {
-    // Get user details using userId (assuming it includes the snsSubscriptionArn)
     const user = await getUserById(userId);
 
-    if (!user || !user.snsSubscriptionArn) {
-      console.log(`No SNS subscription ARN found for user ${userId}`);
+    if (!user || !(topic === 'userNotifications' ? user.snsSubscriptionArnUserNotifications : user.snsSubscriptionArnImageUploadNotifications)) {
+      console.log(`No SNS subscription ARN found for user ${userId} on topic ${topic}`);
       throw new Error('No subscription found for the user.');
     }
 
     const params = {
       Message: message,
       Subject: 'Notification', // Email subject
-      TargetArn: user.snsSubscriptionArn, // Send to the specific user's subscription ARN
+      TargetArn: topic === 'userNotifications' ? user.snsSubscriptionArnUserNotifications : user.snsSubscriptionArnImageUploadNotifications, // Send to the specific user's subscription ARN
     };
 
     // AWS SNS publish
     const data = await snsClient.send(new PublishCommand(params));
-    console.log(`Notification sent to ${user.email}:`, data);
+    console.log(`Notification sent to ${user.email} on topic ${topic}:`, data);
   } catch (error) {
     console.error('Error sending notification:', error);
     throw new Error('Failed to send notification.');
   }
 };
 
-
 // Send a registration notification
 const sendRegistrationNotification = async (email) => {
   const message = `Welcome to our platform, ${email}! We're excited to have you with us.`;
-  await sendDirectNotification(email, message);
+  await sendDirectNotification(email, message, 'userNotifications');
+};
+
+// Send an image upload notification
+const sendImageUploadNotification = async (userId) => {
+  const message = `Your image has been successfully uploaded!`;
+  await sendDirectNotification(userId, message, 'imageUploadNotifications');
 };
 
 // Register user
@@ -97,8 +117,7 @@ exports.registerUser = async (req, res) => {
     });
 
     if (result.success) {
-      await subscribeUserToSNS(email, result.userId);
-      await sendRegistrationNotification(email);
+      await subscribeUserToSNS(email, result.userId); // Subscribe to both topics
 
       return res.status(201).json({ message: 'User registered successfully.' });
     }
@@ -170,7 +189,7 @@ exports.updatePreferences = async (req, res) => {
       }
 
       // Send notification only to the user making the changes (the one whose preferences are being updated)
-      await sendDirectNotification(user.id, 'Your preferences have been updated.');
+      await sendDirectNotification(user.id, 'Your preferences have been updated.', 'userNotifications');
 
       return res.status(200).json({ message: 'Preferences updated successfully.' });
     }

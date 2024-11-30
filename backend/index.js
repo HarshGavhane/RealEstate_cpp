@@ -13,6 +13,8 @@ const dashboardRoutes = require('./routes/dashboardRoutes');
 const preferencesRoutes = require("./routes/preferencesRoutes");
 const profileRoutes = require('./routes/profileRoute');
 const galleryRoutes = require('./routes/galleryRoutes');
+const imageRouter = require('./routes/imageRoutes');
+const multer = require('multer');
 
 
 const app = express();
@@ -42,6 +44,7 @@ app.use("/market-trends", dashboardRoutes);
 app.use("/api/preferences", preferencesRoutes); 
 app.use("/api", profileRoutes);
 app.use('/api', galleryRoutes);
+app.use('/api/images', imageRouter);
 
 // Set up the view engine if you plan to use EJS (optional)
 app.set('view engine', 'ejs');
