@@ -1,8 +1,8 @@
 const dashboardModel = require('../models/dashboardModel');
 
-// Controller function to handle market trends fetch
+// Controller code
 const getMarketTrends = async (req, res) => {
-  const { region } = req.query; // Extract region from the query string
+  const { region } = req.query; 
 
   if (!region) {
     return res.status(400).json({ message: "Region is required" });
@@ -29,7 +29,7 @@ const getMarketTrends = async (req, res) => {
 
 // Helper functions for calculating averages and demand levels
 const calculateAveragePrice = (trends) => {
-  const total = trends.reduce((sum, trend) => sum + trend.AveragePrice, 0); // Make sure this field exists in the items
+  const total = trends.reduce((sum, trend) => sum + trend.AveragePrice, 0); 
   return total / trends.length || 0;
 };
 
@@ -38,7 +38,7 @@ const calculateDemandLevel = (trends) => {
 
   // Count occurrences of each demand level
   trends.forEach((trend) => {
-    const demand = trend.Demand ? trend.Demand.toUpperCase() : '';  // Normalize to uppercase for consistency
+    const demand = trend.Demand ? trend.Demand.toUpperCase() : '';  
     if (demand === "HIGH") demandLevels.High += 1;
     else if (demand === "MEDIUM") demandLevels.Medium += 1;
     else if (demand === "LOW") demandLevels.Low += 1;

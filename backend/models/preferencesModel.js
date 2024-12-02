@@ -2,7 +2,7 @@ const { DynamoDBClient, QueryCommand, PutItemCommand, DeleteItemCommand } = requ
 
 // DynamoDB Client
 const dynamoDBClient = new DynamoDBClient({
-  region: "us-east-1", // Update with your AWS region
+  region: "us-east-1", 
 });
 
 // Fetch preferences
@@ -15,7 +15,7 @@ const fetchPreferences = async (userId, region) => {
       "#region": "region", // Alias for region (reserved keyword)
     },
     ExpressionAttributeValues: {
-      ":userId": { N: String(userId) }, // Assuming userId is numeric
+      ":userId": { N: String(userId) }, 
       ":region": { S: region },
     },
   };

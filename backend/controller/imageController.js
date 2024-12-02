@@ -63,8 +63,16 @@ const uploadImage = async (req, res) => {
     await s3Client.send(uploadCommand); // Upload file to S3
 
     let regionsqs = "";
-    if(region === "east"){
+    if (region === "east") {
       regionsqs = "East";
+    } else if (region === "west") {
+      regionsqs = "West";
+    } else if (region === "north") {
+      regionsqs = "North";
+    } else if (region === "south") {
+      regionsqs = "South";
+    } else {
+      regionsqs = "Unknown";
     }
 
     // Send message to SQS queue to notify Lambda

@@ -16,8 +16,8 @@ const saveUser = async (data) => {
 
     console.log('DynamoDB parameters:', params); // Debug log to verify parameters
     const command = new PutItemCommand(params);
-    await ddbClient.send(command); // Save to DynamoDB
-    console.log('User saved successfully'); // Debug log
+    await ddbClient.send(command); 
+    console.log('User saved successfully'); 
 
     return { success: true, id: numericId }; // Return success with generated ID
   } catch (error) {

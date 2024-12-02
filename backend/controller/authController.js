@@ -3,14 +3,14 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { saveUser, getUserByEmail, updateUserPreferences } = require('../models/userModel');
 
-// Initialize SNS client
-const snsClient = new SNSClient({ region: 'us-east-1' }); // Update your AWS region
+// Initialization of the SNS client
+const snsClient = new SNSClient({ region: 'us-east-1' }); 
 const snsTopicArns = {
-  userNotifications: 'arn:aws:sns:us-east-1:905418443228:UserNotifications', // Replace with your SNS Topic ARN for user notifications
-  imageUploadNotifications: 'arn:aws:sns:us-east-1:905418443228:ImageUploadNotifications', // Replace with your SNS Topic ARN for image upload notifications
+  userNotifications: 'arn:aws:sns:us-east-1:905418443228:UserNotifications', //  SNS Topic ARN for userNotifications
+  imageUploadNotifications: 'arn:aws:sns:us-east-1:905418443228:ImageUploadNotifications', //  SNS Topic ARN for image upload notifications
 };
 
-// Subscribe user email to SNS topics
+// Subscription code of SNS 
 const subscribeUserToSNS = async (email, userId) => {
   try {
     const user = await getUserByEmail(email);
@@ -19,34 +19,34 @@ const subscribeUserToSNS = async (email, userId) => {
       throw new Error('User not found.');
     }
 
-    // Check if user is already subscribed to both topics
+    // Checking the user is already subscribed to both topics or not
     if (user.isSubscribed) {
       console.log(`User ${email} is already subscribed to SNS.`);
       return;
     }
 
-    // Subscribe user to userNotifications topic
+    // Subscribe user to the userNotifications topic
     const userParams = {
       Protocol: 'email',
       Endpoint: email,
       TopicArn: snsTopicArns.userNotifications,
       Attributes: {
         FilterPolicy: JSON.stringify({
-          email: [email] // Filter policy to target this specific email
+          email: [email] // Filter policy to target this particular email
         })
       }
     };
     const userSubscription = await snsClient.send(new SubscribeCommand(userParams));
     console.log(`Subscription request sent for ${email} to userNotifications:`, userSubscription);
 
-    // Subscribe user to imageUploadNotifications topic
+    // Subscription code of imageUploadNotifications topic
     const imageUploadParams = {
       Protocol: 'email',
       Endpoint: email,
       TopicArn: snsTopicArns.imageUploadNotifications,
       Attributes: {
         FilterPolicy: JSON.stringify({
-          email: [email] // Filter policy to target this specific email
+          email: [email] // Filter policy to target this particular email
         })
       }
     };

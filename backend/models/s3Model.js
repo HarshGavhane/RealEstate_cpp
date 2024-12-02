@@ -5,8 +5,8 @@ const { s3Client } = require('../awsClient');
 
 // Fetch images from S3 based on region
 const getImagesByRegion = async (region) => {
-  const bucketName = 'real-estate-upload-bucket';  // S3 bucket name
-  const prefix = `images/${region}/`;  // Folder structure in S3 (images/region/)
+  const bucketName = 'real-estate-upload-bucket';  
+  const prefix = `images/${region}/`;  
 
   const params = {
     Bucket: bucketName,

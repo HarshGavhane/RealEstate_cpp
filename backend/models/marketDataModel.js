@@ -1,5 +1,5 @@
 const { DynamoDBClient, PutItemCommand } = require('@aws-sdk/client-dynamodb');
-const { v4: uuidv4 } = require('uuid'); // Install uuid using `npm install uuid`
+const { v4: uuidv4 } = require('uuid'); 
 
 // Initialize DynamoDB client
 const dynamoDBClient = new DynamoDBClient({ region: 'us-east-1' });

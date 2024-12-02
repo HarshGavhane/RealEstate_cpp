@@ -1,27 +1,31 @@
 /* Gallery container */
 .gallery-container {
-  margin: 30px auto;
-  padding: 20px;
+  margin: 50px auto;
+  padding: 40px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 60px;
   max-width: 1200px;
   align-items: center;
   justify-content: center;
-  overflow: hidden; /* Hide overflow to focus on images */
+  overflow: hidden;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Heading for each region */
 .region-heading {
-  font-size: 30px;
-  font-weight: bold;
+  font-size: 32px;
+  font-weight: 600;
   text-transform: capitalize;
-  margin-bottom: 20px;
-  color: #444;
+  margin-bottom: 25px;
+  color: #333;
   text-align: center;
   border-bottom: 2px solid #ddd;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
   width: 100%;
+  letter-spacing: 1px;
 }
 
 /* Horizontal sliding container for images */
@@ -29,50 +33,54 @@
   display: flex;
   flex-wrap: nowrap;
   gap: 20px;
-  animation: slide 30s linear infinite; /* Automatic slide with 30 seconds duration */
-  padding: 10px;
+  animation: slide 240s linear infinite; /* Very slow sliding animation (120s instead of 60s) */
+  padding: 20px;
   width: 100%;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 /* Individual image items */
 .image-item {
   flex-shrink: 0;
   cursor: pointer;
-  border-radius: 8px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
   position: relative;
+  transition: transform 1s ease, box-shadow 1s ease; /* Very slow hover effects */
 }
 
-.image-item:hover .image-thumbnail {
-  transform: scale(1.05); /* Zoom effect on hover */
+.image-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 /* Thumbnail image style */
 .image-thumbnail {
-  width: 350px;
-  height: 300px;
+  width: 380px;
+  height: 280px;
   object-fit: cover;
-  border-radius: 8px;
-  transition: transform 0.3s ease;
+  border-radius: 12px;
+  transition: transform 1s ease; /* Very slow zoom effect */
 }
 
-/* Keyframe for automatic sliding */
+/* Keyframe for automatic sliding (very slow) */
 @keyframes slide {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-100%); /* Move the images to the left */
+    transform: translateX(-100%);
   }
 }
 
 /* Message when no images are available */
 .no-images-message {
-  font-size: 18px;
-  color: #888;
+  font-size: 20px;
+  color: #555;
   text-align: center;
-  margin-top: 40px;
+  margin-top: 60px;
+  font-weight: 500;
 }
 
 /* Modal overlay */
@@ -82,48 +90,62 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.9);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  animation: fadeIn 1.2s ease-in-out; /* Very slow fade-in animation (1.2s instead of 0.6s) */
 }
 
 /* Modal content */
 .modal-content {
   position: relative;
-  background-color: white;
+  background-color: #fff;
   padding: 30px;
-  border-radius: 12px;
-  max-width: 90%;
-  max-height: 90%;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  max-width: 80%;
+  max-height: 80%;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Modal image */
 .modal-image {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  object-fit: contain;
+  width: 600px; /* Set a fixed width for the modal image */
+  height: 400px; /* Set a fixed height for the modal image */
+  object-fit: contain; /* Ensure the image is fully visible without distortion */
+  border-radius: 15px;
 }
 
 /* Modal close button */
 .modal-close-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 15px;
+  right: 15px;
   background-color: rgba(255, 255, 255, 0.8);
   border: none;
   border-radius: 50%;
-  padding: 10px;
-  font-size: 20px;
+  padding: 14px;
+  font-size: 22px;
   cursor: pointer;
   color: #333;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.4s ease;
 }
 
 .modal-close-button:hover {
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Fade-in effect for modal (very slow) */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

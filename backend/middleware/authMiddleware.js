@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 const verifyToken = (req, res, next) => {
   // Get token from the Authorization header
-  const token = req.headers.authorization?.split(" ")[1]; // Split 'Bearer <token>'
+  const token = req.headers.authorization?.split(" ")[1]; 
 
   // Log the token to help troubleshoot
   console.log("Token received:", token);

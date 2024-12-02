@@ -6,19 +6,19 @@ const client = new DynamoDBClient({ region: 'us-east-1' });
 
 const getMarketTrends = async (region) => {
   const params = {
-    TableName: 'MarketTrends', // Replace with your actual table name
+    TableName: 'MarketTrends', 
     KeyConditionExpression: '#regionID = :region',
     ExpressionAttributeNames: {
-      '#regionID': 'RegionID', // The partition key
+      '#regionID': 'RegionID', 
     },
     ExpressionAttributeValues: {
-      ':region': region, // Directly pass the region string
+      ':region': region, 
     },
   };
 
   try {
     const data = await client.send(new QueryCommand(params));
-    return data.Items; // Return the fetched items
+    return data.Items; 
   } catch (error) {
     console.error('Error fetching data from DynamoDB:', error);
     throw error;

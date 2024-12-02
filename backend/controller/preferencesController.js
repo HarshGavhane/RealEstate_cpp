@@ -1,32 +1,33 @@
 const { fetchPreferences, savePreferences, removePreferences } = require("../models/preferencesModel");
 const { SNSClient, PublishCommand } = require("@aws-sdk/client-sns");
 const { getUserById } = require("../models/userModel")
+const { sendSNSNotificationGeneric } = require("sns-generic")
 
 // Initialize the SNS client
 const snsClient = new SNSClient({ region: "us-east-1" }); // Update with your region
 const topicArn = "arn:aws:sns:us-east-1:905418443228:UserNotifications"; // Replace with your SNS Topic ARN
 
 // Function to send SNS notification
-const sendSNSNotification = async (message, email) => {
-  try {
-    const params = {
-      Message: message,
-      TopicArn: topicArn, // Your SNS topic ARN
-      MessageAttributes: {
-        email: {
-          DataType: "String",
-          StringValue: email // Ensure the email you want to filter is passed correctly
-        }
-      }
-    };
+// const sendSNSNotification = async (message, email) => {
+//   try {
+//     const params = {
+//       Message: message,
+//       TopicArn: topicArn, // Your SNS topic ARN
+//       MessageAttributes: {
+//         email: {
+//           DataType: "String",
+//           StringValue: email // Ensure the email you want to filter is passed correctly
+//         }
+//       }
+//     };
 
-    const command = new PublishCommand(params);
-    await snsClient.send(command);
-    console.log("Notification sent successfully.");
-  } catch (error) {
-    console.error("Error sending notification:", error);
-  }
-};
+//     const command = new PublishCommand(params);
+//     await snsClient.send(command);
+//     console.log("Notification sent successfully.");
+//   } catch (error) {
+//     console.error("Error sending notification:", error);
+//   }
+// };
 
 
 // Get preferences for a user and region
@@ -89,8 +90,7 @@ const createOrUpdatePreferences = async (req, res) => {
     }
 
     // Send SNS notification using the email from the database
-    await sendSNSNotification(message, user.email);
-
+    await sendSNSNotificationGeneric(message, user.email, topicArn, "us-east-1");
     res.status(201).json({ message: "Preferences saved successfully." });
   } catch (error) {
     console.error("Error saving preferences:", error.message);
@@ -122,7 +122,7 @@ const deletePreferences = async (req, res) => {
     }
 
     // Send SNS notification with the deleted values
-    await sendSNSNotification(message, user.email);
+    await sendSNSNotificationGeneric(message, user.email, topicArn, "us-east-1");
 
     res.status(200).json({ message: "Preferences deleted successfully." });
   } catch (error) {

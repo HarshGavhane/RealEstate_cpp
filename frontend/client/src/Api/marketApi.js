@@ -22,4 +22,4 @@ export const fetchUserPreferences = async (userId) => {
   }
 };
 
-// Add more functions as needed for Alerts and User Preferences
+

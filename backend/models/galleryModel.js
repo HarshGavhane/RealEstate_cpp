@@ -48,7 +48,7 @@ async function getImagesForRegions(regions) {
       if (IMAGE_FOLDERS.includes(region.toLowerCase())) { 
         const params = {
           Bucket: S3_BUCKET_NAME,
-          Prefix: `images/${region.toLowerCase()}/`, // Folder path: images/{region}/
+          Prefix: `images/${region.toLowerCase()}/`, 
         };
 
         const command = new ListObjectsV2Command(params);

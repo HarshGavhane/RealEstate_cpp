@@ -1,10 +1,10 @@
 const { ListObjectsV2Command, HeadObjectCommand } = require('@aws-sdk/client-s3');
-const s3 = require('../awsS3Config'); // Import AWS S3 client
+const s3 = require('../awsS3Config'); 
 
 const getImages = async () => {
   const params = {
-    Bucket: 'real-estate-upload-bucket', // Your S3 bucket name
-    Prefix: 'images/', // Folder in your S3 bucket
+    Bucket: 'real-estate-upload-bucket', 
+    Prefix: 'images/', 
   };
 
   try {
